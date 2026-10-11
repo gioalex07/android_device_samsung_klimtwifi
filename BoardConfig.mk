@@ -20,16 +20,18 @@ include device/samsung/klimt-common/BoardConfigCommon.mk
 LOCAL_PATH := device/samsung/klimtwifi
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := klimtwifi,klimtltecan,klimtlte,
+TARGET_OTA_ASSERT_DEVICE := klimtwifi,klimtltecan,klimtlte
 
 # Kernel
 TARGET_KERNEL_CONFIG := lineageos_klimtwifi_defconfig
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
+# The physical RECOVERY partition is 10485760 bytes. This value is larger only
+# so the build does not fail; never flash a recovery.img bigger than 10485760.
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 13485760
+# Physical SYSTEM is 2527068160; kept smaller so the T705 TWRP can flash it.
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2506096640
-# BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2527068160
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12532580352
 BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
