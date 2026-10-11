@@ -80,9 +80,9 @@ do_patch() {
 
     echo "== Exynos 5420 patches"
     apply frameworks/av patch "$(fetch exynos5420/5420-frameworks-av-omx-codecs.diff)"
-    apply hardware/samsung patch "$(fetch exynos5420/5420-hardware-samsung-include-ril.diff)"
+    # 5420-hardware-samsung-include-ril.diff no longer applies: rebased in patches/hardware+samsung
     apply hardware/samsung_slsi/exynos patch "$(fetch exynos5420/hardware_samsung_slsi_exynos.diff)"
-    apply hardware/samsung_slsi/exynos5 patch "$(fetch exynos5420/hardware_samsung_slsi_exynos5.diff)"
+    # hardware_samsung_slsi_exynos5.diff only adds comments (and is corrupt): skipped
     apply hardware/samsung_slsi/exynos5420 patch "$(fetch exynos5420/hardware_samsung_slsi_exynos5420.diff)"
 
     # libfimg4x/5x -Wunreachable-code-loop-increment fixes (abandoned upstream)
