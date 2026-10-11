@@ -1,0 +1,23 @@
+diff --git a/audio/Android.mk b/audio/Android.mk
+index 813278d..d7dd8b2 100644
+--- a/audio/Android.mk
++++ b/audio/Android.mk
+@@ -46,6 +46,7 @@ LOCAL_C_INCLUDES += \
+ 	external/tinyalsa/include \
+ 	external/tinycompress/include \
+ 	hardware/libhardware/include \
++	hardware/ril/include \
+ 	hardware/samsung/ril/libsecril-client \
+ 	$(call include-path-for, audio-utils) \
+ 	$(call include-path-for, audio-route) \
+diff --git a/ril/libsecril-client/Android.mk b/ril/libsecril-client/Android.mk
+index 4c6b7f5..562a9e9 100755
+--- a/ril/libsecril-client/Android.mk
++++ b/ril/libsecril-client/Android.mk
+@@ -29,5 +29,6 @@ endif
+ 
+ LOCAL_MODULE:= libsecril-client
+ LOCAL_VENDOR_MODULE := true
++LOCAL_C_INCLUDES += hardware/ril/include
+ 
+ include $(BUILD_SHARED_LIBRARY)
