@@ -115,8 +115,7 @@ do_build() {
     # shellcheck disable=SC1091
     source build/envsetup.sh
     breakfast klimtwifi || return 1
-    # Leave headroom for the rest of the system on a 26 GB WSL VM.
-    m -j"$(( $(nproc) > 12 ? 12 : $(nproc) ))" bacon || return 1
+    m -j"$(nproc)" bacon || return 1
     "${DEVICE_DIR}/tests/check-build-output.sh" "${OUT}"
 }
 
