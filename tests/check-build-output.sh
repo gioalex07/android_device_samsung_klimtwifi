@@ -65,7 +65,9 @@ else
 fi
 
 echo "== Vendor contents"
+# No vendor partition on this device: vendor files are built into system/vendor.
 vendor="${OUT_DIR}/vendor"
+[ -d "${vendor}" ] || vendor="${OUT_DIR}/system/vendor"
 for f in bin/gpsd etc/gps.xml lib/hw/gps.universal5420.so lib/libshim_gpsd.so \
          lib/sensors.universal5420.so etc/init/hw/init.target.rc etc/floating_feature.xml; do
     if [ -e "${vendor}/${f}" ]; then ok "vendor/${f}"; else bad "vendor/${f} missing"; fi
