@@ -1,0 +1,21 @@
+diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/policy/FlashlightControllerImpl.java b/packages/SystemUI/src/com/android/systemui/statusbar/policy/FlashlightControllerImpl.java
+index b98eff830..251f6efe2 100644
+--- a/packages/SystemUI/src/com/android/systemui/statusbar/policy/FlashlightControllerImpl.java
++++ b/packages/SystemUI/src/com/android/systemui/statusbar/policy/FlashlightControllerImpl.java
+@@ -177,7 +177,15 @@ public class FlashlightControllerImpl implements FlashlightController {
+     private String getCameraId() throws CameraAccessException {
+         String[] ids = mCameraManager.getCameraIdList();
+         for (String id : ids) {
+-            CameraCharacteristics c = mCameraManager.getCameraCharacteristics(id);
++            CameraCharacteristics c;
++            try {
++                c = mCameraManager.getCameraCharacteristics(id);
++            } catch (CameraAccessException e) {
++                // Legacy HAL1-only cameras have no camera2 characteristics: use the first id as
++                // the back camera, mHasFlashlight already says that the device has a flash
++                Log.w(TAG, "No characteristics for camera " + id + ", assuming it has the flash");
++                return id;
++            }
+             Boolean flashAvailable = c.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+             Integer lensFacing = c.get(CameraCharacteristics.LENS_FACING);
+             if (flashAvailable != null && flashAvailable
