@@ -1,0 +1,15 @@
+diff --git a/proprietary/etc/wifi/nvram_net.txt b/proprietary/etc/wifi/nvram_net.txt
+index 34decf4..30db574 100644
+--- a/proprietary/etc/wifi/nvram_net.txt
++++ b/proprietary/etc/wifi/nvram_net.txt
+@@ -9,8 +9,8 @@ boardflags2=0x00802000
+ boardflags3=0x48000109
+ 
+ macaddr=00:90:4c:16:70:01
+-ccode=GB
+-regrev=6
++ccode=US
++regrev=0
+ antswitch=0
+ pdgain5g=4
+ pdgain2g=4
