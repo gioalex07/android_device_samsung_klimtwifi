@@ -66,9 +66,7 @@ on boot
     chown system radio /sys/class/sensors/grip_sensor/onoff
 
 # SENSOR FRAMEWORK : starts fingerprintService
-# Disabled: the fingerprint HAL is not built in klimt-common, so nothing uses it.
 service vcsFPService /vendor/bin/vcsFPService
     class main
     user system
     group system
-    disabled
